@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/02/15 08:22:08.000.986,=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2023/02/15 08:22:35.000.712,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Project3.dproj=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Project3.dproj</Transaction>
+    <Transaction>2023/02/15 10:24:54.000.381,=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2023/02/16 09:54:32.000.308,=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
+    <Transaction>2023/02/17 08:38:14.000.872,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\uUpdate.dfm=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit5.dfm</Transaction>
+    <Transaction>2023/02/17 08:38:14.000.872,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\uUpdate.pas=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit5.pas</Transaction>
+    <Transaction>2023/02/17 08:39:18.000.697,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\uCadastro.dfm=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit4.dfm</Transaction>
+    <Transaction>2023/02/17 08:39:18.000.697,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\uCadastro.pas=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit4.pas</Transaction>
+    <Transaction>2023/02/17 09:41:08.000.142,=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit3.pas</Transaction>
+    <Transaction>2023/02/17 09:41:29.000.243,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit3.dfm=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\uConfig.dfm</Transaction>
+    <Transaction>2023/02/17 09:41:29.000.243,C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit3.pas=C:\Users\progr\OneDrive\Documentos\Embarcadero\Studio\Projects\uConfig.pas</Transaction>
+  </Transactions>
+</BorlandProject>
