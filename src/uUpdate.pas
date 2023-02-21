@@ -60,7 +60,7 @@ implementation
 
 {$R *.dfm}
 
-uses uConfig;
+uses uConfig, uMain;
 
 procedure TfrmUpdate.btnAddClick(Sender: TObject);
 begin
@@ -152,6 +152,7 @@ begin
 
   finally
     ShowMessage('registro atualizado com sucesso!');
+    frmControleEstoque.loadJSON();
   end;
 
   end;

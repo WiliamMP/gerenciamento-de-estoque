@@ -1,7 +1,7 @@
 [ExpressSkins]
-Default=1
+Default=0
 ShowNotifications=1
-Enabled=0
+Enabled=1
 dxSkinBlack=0
 dxSkinBlue=0
 dxSkinBlueprint=0
@@ -34,7 +34,7 @@ dxSkinOffice2013DarkGray=0
 dxSkinOffice2013LightGray=0
 dxSkinOffice2013White=0
 dxSkinOffice2016Colorful=0
-dxSkinOffice2016Dark=0
+dxSkinOffice2016Dark=1
 dxSkinPumpkin=0
 dxSkinSeven=0
 dxSkinSevenClassic=0

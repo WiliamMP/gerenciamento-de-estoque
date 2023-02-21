@@ -42,7 +42,15 @@ uses
   ShellApi,
   uConfig,
   IniFiles,
-  DamUnit;
+  DamUnit,
+  dxSkinsCore,
+  dxSkinOffice2016Dark,
+  dxSkinscxPCPainter,
+  dxSkinsForm,
+  System.Win.ComObj,
+  dxLayoutLookAndFeels,
+  frxClass;
+
 
 type
   TfrmControleEstoque = class(TForm)
@@ -57,8 +65,6 @@ type
     ToolButton7: TToolButton;
     dxLayoutControl1Group_Root: TdxLayoutGroup;
     dxLayoutControl1: TdxLayoutControl;
-    edtCodigoProduto: TMaskEdit;
-    dxLayoutItem1: TdxLayoutItem;
     grpPrimario: TdxLayoutGroup;
     strGrid: TStringGrid;
     dxLayoutItem2: TdxLayoutItem;
@@ -70,6 +76,7 @@ type
     dxLayoutItem3: TdxLayoutItem;
     credits: TdxLayoutGroup;
     _ErroDamMsg1: TDamMsg;
+    ToolButton9: TToolButton;
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -84,6 +91,7 @@ type
     procedure ToolButton5Click(Sender: TObject);
     procedure ToolButton6Click(Sender: TObject);
     procedure ToolButton8Click(Sender: TObject);
+    procedure ToolButton9Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -97,7 +105,6 @@ var
 implementation
 
 {$R *.dfm}
-
 
 
 procedure TfrmControleEstoque.limparGrid();
@@ -166,46 +173,53 @@ var
   jsonValueMarca  : TJSONValue;
   jsonValueValor  : TJSONValue;
 begin
-try
-  fileLocation := frmConfig.btnPath.Caption;
-  AssignFile(docFile, fileLocation);
 
-  Reset(docFile);
+  try
+    fileLocation := frmConfig.btnPath.Caption;
+    AssignFile(docFile, fileLocation);
 
-  while not Eof(docFile) do
-  begin
-     Readln(docFile, jsonString);
-  end;;
-  jsonArray := TJSONObject.ParseJSONValue(jsonString) as TJSONArray;
+    Reset(docFile);
 
-  for I := 0 to jsonArray.Size - 1 do
-  begin
-    subObjJson := (jsonArray.Get(I) as TJSONObject);
+    while not Eof(docFile) do
+    begin
+       Readln(docFile, jsonString);
+    end;;
+    jsonArray := TJSONObject.ParseJSONValue(jsonString) as TJSONArray;
 
-    jsonValueNome   := subObjJson.GetValue<TJSONValue>('NOME_DO_PRODUTO') as TJSONValue;
-    jsonValueTipo   := subObjJson.GetValue<TJSONValue>('TIPO_DO_PRODUTO') as TJSONValue;
-    jsonValueMarca  := subObjJson.GetValue<TJSONValue>('MARCA_DO_PRODUTO') as TJSONValue;
-    jsonValueValor  := subObjJson.GetValue<TJSONValue>('PRECO_DO_PRODUTO') as TJSONValue;
+    for I := 0 to jsonArray.Size - 1 do
+    begin
+      subObjJson := (jsonArray.Get(I) as TJSONObject);
 
-    strGrid.RowCount      := I + 2;
-    strGrid.Cells[0,I+1]  := (strGrid.RowCount -1 ).ToString;
-    strGrid.Cells[1,I+1]  := jsonValueNome.Value;
-    strGrid.Cells[2,I+1]  := jsonValueTipo.Value;
-    strGrid.Cells[3,I+1]  := jsonValueMarca.Value;
-    strGrid.Cells[4,I+1]  := jsonValueValor.Value;
-  end;
- CloseFile(docFile);
-except on e: EAccessViolation do
-  begin
-  Exit
-  end;
-  on e : EInOutError do
-  begin
-  Exit
-  end;  //  exceptions desnecessárias, pois as falhas geradas são
-        //  por conta de algo que o usuario fez
+      jsonValueNome   := subObjJson.GetValue<TJSONValue>('NOME_DO_PRODUTO') as TJSONValue;
+      jsonValueTipo   := subObjJson.GetValue<TJSONValue>('TIPO_DO_PRODUTO') as TJSONValue;
+      jsonValueMarca  := subObjJson.GetValue<TJSONValue>('MARCA_DO_PRODUTO') as TJSONValue;
+      jsonValueValor  := subObjJson.GetValue<TJSONValue>('PRECO_DO_PRODUTO') as TJSONValue;
+
+      strGrid.RowCount      := I + 2;
+      strGrid.Cells[0,I+1]  := (strGrid.RowCount -1 ).ToString;
+      strGrid.Cells[1,I+1]  := jsonValueNome.Value;
+      strGrid.Cells[2,I+1]  := jsonValueTipo.Value;
+      strGrid.Cells[3,I+1]  := jsonValueMarca.Value;
+      strGrid.Cells[4,I+1]  := jsonValueValor.Value;
+
+    end;
+    subObjJson.Free;
+   CloseFile(docFile);
+  except on e: EAccessViolation do
+    begin
+    CloseFile(docFile);
+    Exit
+    end;
+    on e : EInOutError do
+    begin
+    CloseFile(docFile);
+    Exit
+    end;  //  exceptions desnecessárias, pois as falhas geradas são
+          //  por conta de algo que o usuario fez
+
 
 end;
+
 
 end;
 
@@ -224,13 +238,12 @@ end;
 
 procedure TfrmControleEstoque.btnSalvarClick(Sender: TObject);
 begin
-//  updateJSON();
   frmUpdate.ShowModal;
+  frmUpdate.Free;
 end;
 
 procedure TfrmControleEstoque.FormCreate(Sender: TObject);
 begin
-
   strGrid.Cells[0,0] := 'ID';
   strGrid.Cells[1,0] := 'NOME';
   strGrid.Cells[2,0] := 'TIPO';
@@ -243,6 +256,7 @@ end;
 procedure TfrmControleEstoque.ToolButton1Click(Sender: TObject);
 begin
   frmCadastro.ShowModal;
+  frmCadastro.Free;
 end;
 
 procedure TfrmControleEstoque.ToolButton2Click(Sender: TObject);
@@ -309,6 +323,7 @@ finally
    CloseFile(docFile);
 
     frmUpdate.ShowModal;
+	  frmUpdate.Free;
     end;
   end;
 procedure TfrmControleEstoque.ToolButton5Click(Sender: TObject);
@@ -340,7 +355,13 @@ procedure TfrmControleEstoque.ToolButton8Click(Sender: TObject);
 begin
 
    frmConfig.ShowModal;
+   frmConfig.Free;
 
+end;
+
+procedure TfrmControleEstoque.ToolButton9Click(Sender: TObject);
+begin
+  ShowMessage('exportar para arquivo excel, porém tem que achar um biblioteca');
 end;
 
 end.

@@ -62,16 +62,6 @@ object frmCadastro: TfrmCadastro
       TabOrder = 2
       Text = ''
     end
-    object edtPrecoProduto: TRzNumericEdit
-      Left = 114
-      Top = 109
-      Width = 510
-      Height = 21
-      MaxLength = 10
-      TabOrder = 3
-      OnClick = edtPrecoProdutoClick
-      DisplayFormat = ',0;(,0)'
-    end
     object btnAdd: TRzButton
       Left = 95
       Top = 184
@@ -87,6 +77,20 @@ object frmCadastro: TfrmCadastro
       Caption = 'Cancelar'
       TabOrder = 5
       OnClick = btnCancProdutoClick
+    end
+    object edtPrecoProduto: TMaskEdit
+      Left = 116
+      Top = 111
+      Width = 506
+      Height = 17
+      BevelInner = bvNone
+      BevelOuter = bvSpace
+      BevelKind = bkFlat
+      BorderStyle = bsNone
+      TabOrder = 3
+      Text = ''
+      OnChange = edtPrecoProdutoChange
+      OnEnter = MaskEdit1Enter
     end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
@@ -132,15 +136,6 @@ object frmCadastro: TfrmCadastro
       ControlOptions.OriginalWidth = 121
       Index = 2
     end
-    object precoProduto: TdxLayoutItem
-      Parent = grpFields
-      CaptionOptions.Text = 'Pre'#231'o:'
-      Control = edtPrecoProduto
-      ControlOptions.OriginalHeight = 21
-      ControlOptions.OriginalWidth = 65
-      ControlOptions.ShowBorder = False
-      Index = 3
-    end
     object grpCreatebtn: TdxLayoutGroup
       Parent = dxLayoutControl1Group_Root
       AlignHorz = ahCenter
@@ -177,10 +172,18 @@ object frmCadastro: TfrmCadastro
       ControlOptions.ShowBorder = False
       Index = 1
     end
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = grpFields
+      CaptionOptions.Text = 'Pre'#231'o:'
+      Control = edtPrecoProduto
+      ControlOptions.OriginalHeight = 17
+      ControlOptions.OriginalWidth = 121
+      Index = 3
+    end
   end
   object Dam1: TDam
     Left = 40
-    Top = 144
+    Top = 176
     object _DamMsg1: TDamMsg
       Mensagem = 
         '~M~C[3366FF]~N~T[12]CADASTRO~t~n~n~n~c'#13#10#13#10'~MCadastro realizado c' +

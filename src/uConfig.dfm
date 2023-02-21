@@ -45,6 +45,13 @@ object frmConfig: TfrmConfig
       Caption = 'Salvar'
       TabOrder = 0
     end
+    object btnExport: TRzButton
+      Left = 116
+      Top = 71
+      Width = 325
+      Caption = '...'
+      TabOrder = 3
+    end
     object dxLayoutControl1Group_Root: TdxLayoutGroup
       AlignHorz = ahClient
       AlignVert = avClient
@@ -101,6 +108,16 @@ object frmConfig: TfrmConfig
       ControlOptions.OriginalWidth = 75
       ControlOptions.ShowBorder = False
       Index = 0
+    end
+    object dxLayoutItem1: TdxLayoutItem
+      Parent = dxLayoutControl1Group_Root
+      AlignHorz = ahLeft
+      CaptionOptions.Text = 'Local de Exporta'#231#227'o:'
+      Control = btnExport
+      ControlOptions.OriginalHeight = 25
+      ControlOptions.OriginalWidth = 325
+      ControlOptions.ShowBorder = False
+      Index = 2
     end
   end
   object rzSelectFolder: TRzSelectFolderDialog

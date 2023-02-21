@@ -10,6 +10,7 @@ uses
 {$R *.res}
 
 begin
+//  ReportMemoryLeaksOnShutdown := true;
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TfrmControleEstoque, frmControleEstoque);

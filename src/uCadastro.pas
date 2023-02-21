@@ -25,7 +25,7 @@ uses
   Vcl.Mask,
   uConfig,
   cxClasses,
-  dxLayoutControl, DamUnit;
+  dxLayoutControl, DamUnit, Vcl.ExtCtrls;
 
 type
   TfrmCadastro = class(TForm)
@@ -37,8 +37,6 @@ type
     tipoProduto: TdxLayoutItem;
     edtProductMark: TMaskEdit;
     marcaProduto: TdxLayoutItem;
-    edtPrecoProduto: TRzNumericEdit;
-    precoProduto: TdxLayoutItem;
     btnAdd: TRzButton;
     addProduto: TdxLayoutItem;
     btnCancProduto: TRzButton;
@@ -47,9 +45,14 @@ type
     grpCreatebtn: TdxLayoutGroup;
     Dam1: TDam;
     _DamMsg1: TDamMsg;
+    edtPrecoProduto: TMaskEdit;
+    dxLayoutItem1: TdxLayoutItem;
     procedure btnAddClick(Sender: TObject);
     procedure btnCancProdutoClick(Sender: TObject);
     procedure edtPrecoProdutoClick(Sender: TObject);
+    procedure edtPrecoProdutoEnter(Sender: TObject);
+    procedure MaskEdit1Enter(Sender: TObject);
+    procedure edtPrecoProdutoChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,6 +65,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uMain;
 
 
 
@@ -115,10 +120,12 @@ begin
         end
         else
         begin
-        jsonString:='"NOME_DO_PRODUTO":"'  + edtProductName.Text  +  '",' +
+        jsonString :=
+                    '"NOME_DO_PRODUTO":"'  + edtProductName.Text  +  '",' +
                     '"TIPO_DO_PRODUTO":"'  + cmbTipoProduto.Text  +  '",' +
                     '"MARCA_DO_PRODUTO":"' + edtProductMark.Text  +  '",' +
                     '"PRECO_DO_PRODUTO":"' + edtPrecoProduto.Text +  '"}]';
+
 
            removeString := StringReplace(removeString,']',',{',[]);
            AssignFile(fileManipuling, pathString);
@@ -141,6 +148,7 @@ begin
       end;
 
       _DamMsg1.Run();
+      frmControleEstoque.loadJSON();
 
 //    AssignFile(fileManipuling, 'C:\Users\progr\OneDrive\Documentos\infos.json');
 //    Rewrite(fileManipuling);
@@ -162,10 +170,35 @@ begin
   frmCadastro.Close;
 end;
 
+procedure TfrmCadastro.edtPrecoProdutoChange(Sender: TObject);
+begin
+  edtPrecoProduto.Text := 'R$';
+  edtPrecoProduto.SelStart := 3;
+end;
+
 procedure TfrmCadastro.edtPrecoProdutoClick(Sender: TObject);
 begin
   edtPrecoProduto.Text := 'R$';
   edtPrecoProduto.SelStart := 3;
+
+end;
+
+procedure TfrmCadastro.edtPrecoProdutoEnter(Sender: TObject);
+begin
+    if edtPrecoProduto.Focused then
+    begin
+      edtPrecoProduto.Text := 'R$';
+      edtPrecoProduto.SelStart := 3;
+    end;
+end;
+
+procedure TfrmCadastro.MaskEdit1Enter(Sender: TObject);
+begin
+if edtPrecoProduto.Focused then
+    begin
+      edtPrecoProduto.Text := 'R$';
+      edtPrecoProduto.SelStart := 3;
+    end;
 end;
 
 end.
